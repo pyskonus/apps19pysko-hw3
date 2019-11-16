@@ -5,7 +5,7 @@ import java.util.Arrays;
 // Base array for decorators
 public class BaseArray implements SmartArray{
     public Object[] els;
-    
+
     public BaseArray(Object[] arr) {
         els = Arrays.copyOf(arr, arr.length);
     }
