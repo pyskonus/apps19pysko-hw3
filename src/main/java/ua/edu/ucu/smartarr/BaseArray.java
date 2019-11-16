@@ -5,13 +5,14 @@ import java.util.Arrays;
 // Base array for decorators
 public class BaseArray implements SmartArray{
     public Object[] els;
+    
     public BaseArray(Object[] arr) {
-        els = arr;
+        els = Arrays.copyOf(arr, arr.length);
     }
 
     @Override
     public Object[] toArray() {
-        return this.els;
+        return Arrays.copyOf(els, els.length);
     }
 
     @Override
