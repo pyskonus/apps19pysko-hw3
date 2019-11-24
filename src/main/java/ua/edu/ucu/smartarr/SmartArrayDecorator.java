@@ -2,16 +2,15 @@ package ua.edu.ucu.smartarr;
 
 abstract class SmartArrayDecorator implements SmartArray {
 
-//    protected SmartArray smartArray;
-    Object[] els;
+    protected SmartArray smartArray;
 
     public SmartArrayDecorator(SmartArray smartArray) {
-        els = smartArray.toArray();
+        this.smartArray = smartArray;
     }
 
     @Override
     public Object[] toArray() {
-        return els;
+        return smartArray.toArray();
     }
 
     @Override
@@ -21,6 +20,6 @@ abstract class SmartArrayDecorator implements SmartArray {
 
     @Override
     public int size() {
-        return els.length;
+        return smartArray.toArray().length;
     }
 }

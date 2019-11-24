@@ -4,18 +4,37 @@ import ua.edu.ucu.functions.MyComparator;
 
 // Sorts elements using MyComparator to compare them
 public class SortDecorator extends SmartArrayDecorator {
+    private MyComparator cmp;
 
     public SortDecorator(SmartArray smartArray, MyComparator myComparator) {
         super(smartArray);
 
-        for (int i = 1; i < els.length; i++) {
-            Object temp = els[i];
+        this.cmp = myComparator;
+    }
+
+    @Override
+    public Object[] toArray() {
+        Object[] arr = smartArray.toArray();
+        for (int i = 1; i < arr.length; i++) {
             int j = i - 1;
-            while (j >= 0 && myComparator.compare(temp, els[j]) < 0) {
-                els[j + 1] = els[j];
+            Object pivot = arr[i];
+
+            while (j >= 0 && cmp.compare(arr[j], pivot) > 0) {
+                arr[j + 1] = arr[j];
                 j--;
             }
-            els[j + 1] = temp;
+            arr[j + 1] = pivot;
         }
+        return arr;
+    }
+
+    @Override
+    public int size() {
+        return smartArray.size();
+    }
+
+    @Override
+    public String operationDescription() {
+        return smartArray.operationDescription() + " + sotring";
     }
 }
